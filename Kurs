@@ -1,0 +1,76 @@
+show databases;
+create database debit_cards;
+use debit_cards;
+
+--Пользователи-- 
+
+create table users (
+id BIGINT unsigned not null auto_increment primary key,
+firstname VARCHAR (100) not null comment 'Имя',
+lastname VARCHAR (100) not null comment 'Фамилия',
+birtday date,
+email varchar (150) unique,
+phone BIGINT unsigned unique,
+key users_firstname_lastname_idx(firstname, lastname)
+)
+
+--Дебетовые карты-- 
+
+create table cards (
+id SERIAL primary KEY,
+user_id BIGINT unsigned not null,
+PAN varchar (255),
+expiry_date date,
+CVV varchar (10),
+foreign key (user_id) references users(id),
+key index_of_PAN(PAN),
+)
+
+--Профили пользователей-- 
+
+create table profiles (
+id SERIAL primary key,
+user_id BIGINT unsigned not null,
+phone BIGINT unsigned not null,
+birtday date,
+approve CHAR(10) comment 'Призак наличия согласия на обработку персональных данных',
+passport_num BIGINT unsigned not null comment 'Номер паспорта',
+passport_ser BIGINT unsigned not null comment 'Серия паспорта',
+expdate date,
+address Varchar(100),
+hometown Varchar(100),
+country Varchar(100),
+inn BIGINT unsigned not null,
+foreign key (user_id) references users(id),
+foreign key (phone) references users(phone),
+foreign key (birthday) references users(birthday),
+key index_of_approve(approve)
+)
+
+--Международные платежные системы-- 
+
+create table psp (
+id serial primary key,
+psp_name varchar (100),
+key index_of_psp(psp)
+)
+
+--История операций-- 
+
+create table transactions (
+id serial primary key,
+from_user_id BIGINT unsigned not null comment 'Исходящий',
+to_user_id BIGINT unsigned not null 'Входящий',
+summ BIGINT unsigned not null comment 'Сумма транзакции',
+comment text,
+from_card_id BIGINT unsigned not null,
+to_card_id BIGINT unsigned not null,
+from_psp_id BIGINT unsigned not null,
+to_psp_id BIGINT unsigned not null,
+created_at datetime default now(),
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  foreign key (from_user_id) references users(id), foreign key (to_user_id) references users(id),
+  foreign key (from_psp_id) references psp(id), foreign key (to_psp_id) references psp(id),
+  foreign key (from_card_id) references cards(id), foreign key (to_card_id) references cards(id)
+)
+
