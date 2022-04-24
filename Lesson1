@@ -1,0 +1,49 @@
+a=10
+b=20
+print(a+b)
+Param1=int(input("Введите значение параметра 1 >>> "))
+if Param1>10:
+    input("Параметр больше 10")
+else:print("Параметр меньше 10")
+
+x=int(input("Введите время"))
+a=x//3600
+b=(x-a*3600)//60
+c=x-(a*3600 + b*60)
+print(f"{a}:{b}:{c}")
+
+number=int(input("Введите число"))
+result=(number+int(str(number)+str(number))+int(str(number)+str(number)+str(number)))
+print(result)
+
+n=int(input("Введите число"))
+max = n % 10
+while n >= 1:
+    n = n // 10
+    if n % 10 > max:
+        max = n % 10
+    if n > 9:
+        continue
+    else:
+        print("Максимальное цифра в числе ", max)
+        break
+profit = float(input("Введите выручку фирмы "))
+costs = float(input("Введите издержки фирмы "))
+if profit > costs:
+    print(f"Фирма работает с прибылью. Рентабельность выручки составила {profit / costs:.2f}")
+    workers = int(input("Введите количество сотрудников фирмы "))
+    print(f"прибыль в расчете на одного сторудника сотавила {profit / workers:.2f}")
+elif profit == costs:
+    print("Фирма работает в ноль")
+else:
+    print("Фирма работает в убыток")
+
+    a = int(input("Введите результаты пробежки первого дня в км "))
+    b = int(input("Введите общий желаемый результат в км "))
+    result_days = 1
+    result_km = a
+    while result_km < b:
+        a = a + 0.1 * a
+        result_days += 1
+        result_km = result_km + a
+    print(f" %.d день" % result_days)
