@@ -1,0 +1,26 @@
+# 1. Реализовать скрипт, в котором должна быть предусмотрена функция расчета заработной платы сотрудника.
+# В расчете необходимо использовать формулу: (выработка в часах*ставка в час) + премия.
+# Для выполнения расчета для конкретных значений необходимо запускать скрипт с параметрами.
+
+# выработка=time, ставка в час=workprice, премия=prize
+import sys
+
+try:
+    file, time, workprice, prize = sys.argv
+except ValueError:
+    print("Ошибка")
+    exit()
+time = int(time)
+workprice = int(workprice)
+prize = int(prize)
+salary = (time * workprice) + prize
+
+
+def calculate(salary):
+    try:
+        return salary
+    except TypeError:
+        return
+
+
+print(int(salary))
