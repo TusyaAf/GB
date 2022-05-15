@@ -1,0 +1,20 @@
+#Создать текстовый файл (не программно),
+# сохранить в нём несколько строк, выполнить подсчёт строк и слов в каждой строке.
+
+#Создан файл data_task2
+#Сделана запись строк
+
+#Создать функцию для открытия файла, чтения и подсчета строк и слов в каждой строке
+
+def countelements():
+    try:
+        with open(r'data_task2.txt') as countdatafile:
+            myspisokinfile = countdatafile.readlines()
+            for spisel in range(len(myspisokinfile)):
+                newspisokinfile = myspisokinfile[spisel].split()
+                print(f'Количество строк в файле {len(myspisokinfile)}. В {spisel + 1}-ой строке {len(newspisokinfile)} слов(а)')
+    except FileNotFoundError:
+        return 'Файл не найден.'
+
+
+countelements()
