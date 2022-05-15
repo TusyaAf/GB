@@ -1,0 +1,20 @@
+# Создать программный файл в текстовом формате, записать в него построчно данные,
+# вводимые пользователем. Об окончании ввода данных будет свидетельствовать пустая строка.
+
+file_data_task1 = open(r'data_task1.txt', "w")
+# raw
+
+# print(file_data_task1.readline())
+
+spisok_dannyh_polsovat = str(input("Введите данные >>> \n"))
+
+print(spisok_dannyh_polsovat.split())
+
+if file_data_task1.writable():
+    file_data_task1.writelines(spisok_dannyh_polsovat)
+
+else:
+    print("Невозможно записать")
+
+# добавить атрибут
+file_data_task1.close()
