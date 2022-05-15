@@ -1,0 +1,15 @@
+# Нужно получить результат вычисления произведения всех элементов списка.
+# Подсказка: использовать функцию reduce().
+
+from functools import reduce
+
+sformir_spisok = range(100, 1001, 2)
+
+
+def amount_func(x, y):
+    return x * y
+
+
+total = reduce(amount_func, sformir_spisok)
+
+print(total)
