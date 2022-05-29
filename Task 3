@@ -1,0 +1,17 @@
+# Создать текстовый файл (не программно). Построчно записать фамилии сотрудников и величину их окладов
+# (не менее 10 строк). Определить, кто из сотрудников имеет оклад менее 20 тысяч, вывести фамилии этих
+# сотрудников. Выполнить подсчёт средней величины дохода сотрудников.
+# Пример файла:
+# Иванов 23543.12
+# Петров 13749.32
+
+with open('data_salary_task3.txt', 'r', encoding='utf-8') as employees:
+    salary = []
+    employee = []
+    result = employees.read().split('\n')
+    for element in result:
+        element=element.split()
+        if int(float(element[1])) < 20000.00:
+            employee.append(element[0])
+        salary.append(element[1])
+print(f'Оклад меньше 20.000 {employee}, средний оклад {sum(map(float, salary)) / len(salary)}')
